@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Walkly.us — Turn Steps Into Rewards</title>
+  <meta name="description" content="Walk daily, earn points, redeem rewards. A clean, fast, mobile-first landing page built for installs." />
+  <meta name="theme-color" content="#2ECC71" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#0f172a;         /* slate-900 */
+      --muted:#475569;       /* slate-600 */
+      --muted2:#64748b;      /* slate-500 */
+      --line:#e5e7eb;        /* gray-200 */
+      --soft:#f8fafc;        /* slate-50 */
+      --soft2:#f1f5f9;       /* slate-100 */
+
+      --brand:#2ECC71;       /* fresh green */
+      --brand2:#22c55e;      /* green-500 */
+      --cta:#2563eb;         /* blue-600 (optional accent) */
+      --shadow:0 12px 30px rgba(2, 8, 23, .10);
+      --shadow2:0 8px 20px rgba(2, 8, 23, .08);
+      --r:18px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 500px at 95% -10%, rgba(46, 204, 113, .20), transparent 60%),
+        radial-gradient(900px 500px at -10% 15%, rgba(37, 99, 235, .12), transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit}
+    .wrap{max-width:1080px;margin:0 auto;padding:18px}
+    .container{max-width:1080px;margin:0 auto;padding:0 18px}
+    .card{
+      background:rgba(255,255,255,.85);
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+    }
+    .glass{
+      background:rgba(255,255,255,.72);
+      backdrop-filter: blur(10px) saturate(140%);
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.75);
+      backdrop-filter: blur(10px) saturate(140%);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:12px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:-0.02em;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg, rgba(46,204,113,1), rgba(37,99,235,.9));
+      color:#fff;
+      box-shadow:var(--shadow2);
+      font-size:18px;
+    }
+    .brand small{
+      display:block;
+      font-weight:600;
+      color:var(--muted2);
+      letter-spacing:0;
+      margin-top:2px;
+      font-size:12px;
+    }
+
+    /* Buttons */
+    .btn{
+      --px:18px; --py:12px;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:var(--py) var(--px);
+      border-radius:14px;
+      border:1px solid transparent;
+      font-weight:800;
+      text-decoration:none;
+      cursor:pointer;
+      transition:transform .08s ease, box-shadow .18s ease, filter .18s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btnPrimary{
+      background:linear-gradient(135deg, var(--brand), var(--cta));
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+    .btnPrimary:hover{filter:brightness(1.03)}
+    .btnGhost{
+      background:#fff;
+      border-color:var(--line);
+      color:var(--ink);
+      box-shadow:none;
+    }
+    .btnGhost:hover{box-shadow:var(--shadow2)}
+    .btnWide{width:100%}
+
+    /* Hero */
+    .hero{
+      padding:22px 0 14px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .heroGrid{grid-template-columns:1fr}
+    }
+    .heroCard{padding:22px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--soft);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+    h1{
+      margin:12px 0 10px;
+      font-size:44px;
+      line-height:1.08;
+      letter-spacing:-0.03em;
+    }
+    .sub{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.55;
+      max-width:52ch;
+    }
+    @media (max-width: 520px){
+      h1{font-size:34px}
+      .sub{font-size:15px}
+    }
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; margin:12px 0 6px}
+    .micro{
+      margin:8px 0 0;
+      color:var(--muted2);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .bullets{
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:10px 14px;
+      margin:16px 0 0;
+      padding:0;
+      list-style:none;
+    }
+    @media (max-width: 520px){
+      .bullets{grid-template-columns:1fr}
+    }
+    .bullets li{
+      display:flex; align-items:flex-start; gap:10px;
+      color:var(--ink);
+      font-weight:650;
+    }
+    .tick{
+      width:18px;height:18px;border-radius:50%;
+      background:rgba(46,204,113,.15);
+      border:1px solid rgba(46,204,113,.35);
+      display:grid;place-items:center;
+      margin-top:2px;
+      flex:0 0 auto;
+    }
+    .tick svg{width:12px;height:12px}
+
+    /* Phone mock */
+    .mock{
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .mockInner{
+      padding:18px;
+      border-radius:var(--r);
+      background:linear-gradient(180deg, rgba(46,204,113,.10), rgba(37,99,235,.06));
+      border:1px solid var(--line);
+      height:100%;
+      min-height:260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .phone{
+      width:min(320px, 92%);
+      border-radius:28px;
+      background:#0b1220;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 20px 60px rgba(2,8,23,.25);
+      overflow:hidden;
+    }
+    .phoneTop{
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      color:#fff;
+      font-weight:700;
+      font-size:13px;
+      background:linear-gradient(135deg, rgba(46,204,113,.85), rgba(37,99,235,.85));
+    }
+    .phoneBody{
+      padding:16px;
+      color:#e8eefc;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+    .statRow{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px}
+    .stat{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+    .stat .n{font-size:18px;font-weight:900}
+    .stat .t{font-size:12px;color:rgba(232,238,252,.75);margin-top:3px}
+
+    /* Sections */
+    .section{padding:18px 0}
+    .sectionTitle{
+      margin:0 0 12px;
+      font-size:22px;
+      letter-spacing:-0.02em;
+      text-align:center;
+    }
+    .sectionLead{
+      margin:0 auto 14px;
+      max-width:60ch;
+      text-align:center;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:14.5px;
+    }
+
+    .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    @media (max-width: 900px){.grid3{grid-template-columns:1fr}}
+    .tile{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      box-shadow:var(--shadow2);
+    }
+    .tile h3{margin:10px 0 6px; font-size:16px}
+    .tile p{margin:0; color:var(--muted); line-height:1.5; font-size:14px}
+    .icon{
+      width:40px;height:40px;border-radius:14px;
+      display:grid;place-items:center;
+      background:rgba(46,204,113,.12);
+      border:1px solid rgba(46,204,113,.25);
+    }
+    .icon svg{width:20px;height:20px}
+
+    .steps{counter-reset:s}
+    .step{
+      position:relative;
+      padding-left:54px;
+    }
+    .step:before{
+      counter-increment:s;
+      content:counter(s);
+      position:absolute;
+      left:16px; top:16px;
+      width:26px;height:26px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      font-weight:900;
+      color:#fff;
+      background:linear-gradient(135deg, var(--brand), var(--cta));
+      box-shadow:var(--shadow2);
+    }
+
+    /* FAQ */
+    .faq{max-width:860px;margin:0 auto;display:grid;gap:10px}
+    details{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+      padding:12px 14px;
+      box-shadow:var(--shadow2);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      color:var(--ink);
+    }
+    details p{margin:10px 0 0;color:var(--muted);line-height:1.55;font-size:14px}
+
+    /* Final CTA */
+    .final{
+      padding:18px;
+      text-align:center;
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      background:linear-gradient(180deg, rgba(46,204,113,.10), rgba(37,99,235,.06));
+      box-shadow:var(--shadow);
+    }
+    .final h2{margin:0 0 6px; font-size:26px; letter-spacing:-0.02em}
+    .final p{margin:0 auto 14px; max-width:58ch; color:var(--muted); line-height:1.55}
+    .final .btn{font-size:16px; --px:22px; --py:14px}
+
+    /* Footer */
+    footer{
+      margin-top:16px;
+      padding:18px 0 26px;
+      color:var(--muted2);
+      font-size:12.5px;
+      line-height:1.55;
+      border-top:1px solid var(--line);
+    }
+    footer a{color:var(--muted); text-decoration:underline}
+    .footRow{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .links{display:flex; gap:12px; flex-wrap:wrap}
+
+    /* Sticky CTA (mobile) */
+    .sticky{
+      position:fixed;
+      left:0; right:0; bottom:0;
+      z-index:60;
+      background:rgba(255,255,255,.85);
+      backdrop-filter: blur(10px) saturate(150%);
+      border-top:1px solid var(--line);
+      padding:10px 12px;
+      display:none;
+    }
+    .stickyInner{
+      max-width:1080px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .stickyTxt{
+      font-weight:900;
+      color:var(--ink);
+      line-height:1.1;
+      font-size:13px;
+    }
+    .stickyTxt span{display:block;color:var(--muted);font-weight:700;font-size:12px;margin-top:2px}
+    @media (max-width: 920px){
+      .sticky{display:block}
+      body{padding-bottom:74px}
+    }
+
+    /* Small utilities */
+    .center{text-align:center}
+    .softCard{
+      padding:14px;
+      border-radius:16px;
+      background:var(--soft);
+      border:1px solid var(--line);
+    }
+    .tiny{font-size:12px;color:var(--muted2)}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand" aria-label="Walkly.us">
+          <div class="logo">W</div>
+          <div>
+            Walkly.us
+            <small>Walk • Earn • Redeem</small>
+          </div>
+        </div>
+
+        <a class="btn btnPrimary" id="btnTop" aria-label="Download and start earning">Download & Start Earning</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroGrid">
+        <div class="card heroCard">
+          <div class="kicker">
+            <!-- shield icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4z" stroke="currentColor" stroke-width="2"/>
+              <path d="M8.5 12l2.2 2.2 4.8-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Free • Mobile-first • iOS & Android
+          </div>
+
+          <h1>Turn Your Steps Into Rewards</h1>
+          <p class="sub">
+            Walk daily, earn points automatically, and redeem rewards inside the app.
+            Simple, legit, and designed for busy people.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn btnPrimary" id="btnPrimary">Download & Start Earning</a>
+            <a class="btn btnGhost" href="#how" aria-label="See how it works">How it works</a>
+          </div>
+
+          <p class="micro">Free download • No credit card • Works worldwide</p>
+
+          <ul class="bullets" aria-label="Key benefits">
+            <li>
+              <span class="tick" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="#2ECC71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Runs in the background
+            </li>
+            <li>
+              <span class="tick" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="#2ECC71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              No equipment needed
+            </li>
+            <li>
+              <span class="tick" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="#2ECC71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Easy setup (under 60s)
+            </li>
+            <li>
+              <span class="tick" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="#2ECC71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Clear reward tracking
+            </li>
+          </ul>
+        </div>
+
+        <!-- Mock visual card -->
+        <div class="card mock glass" aria-label="App preview">
+          <div class="mockInner">
+            <div class="phone" role="img" aria-label="App-style preview showing steps and points">
+              <div class="phoneTop">
+                <div>Today</div>
+                <div>Walkly</div>
+                <div>⚡</div>
+              </div>
+              <div class="phoneBody">
+                <div style="font-weight:900;font-size:18px;letter-spacing:-0.02em">You’re earning while you move</div>
+                <div style="margin-top:6px;color:rgba(232,238,252,.75);font-size:13px;line-height:1.45">
+                  Steps convert into points automatically. Redeem inside the app.
+                </div>
+
+                <div class="statRow" aria-label="Stats">
+                  <div class="stat">
+                    <div class="n">6,420</div>
+                    <div class="t">Steps today</div>
+                  </div>
+                  <div class="stat">
+                    <div class="n">128</div>
+                    <div class="t">Points earned</div>
+                  </div>
+                </div>
+
+                <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+                  <div style="padding:8px 10px;border-radius:999px;background:rgba(46,204,113,.16);border:1px solid rgba(46,204,113,.25);font-weight:800;font-size:12px">
+                    ✅ Background tracking
+                  </div>
+                  <div style="padding:8px 10px;border-radius:999px;background:rgba(37,99,235,.14);border:1px solid rgba(37,99,235,.22);font-weight:800;font-size:12px">
+                    🎁 Redeem rewards
+                  </div>
+                </div>
+
+                <div style="margin-top:12px" class="softCard">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+                    <div>
+                      <div style="font-weight:900;color:#0b1220">Quick start</div>
+                      <div class="tiny">Tap download → install → walk</div>
+                    </div>
+                    <button class="btn btnPrimary" id="btnMock" style="--px:14px;--py:10px;font-size:13px">Download</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <h2 class="sectionTitle">How It Works</h2>
+      <p class="sectionLead">Three simple steps. No confusing setup. One tap to start.</p>
+
+      <div class="grid3 steps">
+        <div class="tile step">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v10" stroke="#2ECC71" stroke-width="2" stroke-linecap="round"/>
+              <path d="M7 8l5-5 5 5" stroke="#2ECC71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 14v4a3 3 0 003 3h8a3 3 0 003-3v-4" stroke="#2ECC71" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Download the App</h3>
+          <p>Tap the button and install from the official app store.</p>
+        </div>
+
+        <div class="tile step">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M16 11a4 4 0 10-8 0v3a4 4 0 108 0v-3z" stroke="#2ECC71" stroke-width="2"/>
+              <path d="M12 18v3" stroke="#2ECC71" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Enable Step Tracking</h3>
+          <p>Allow motion access so steps can count accurately.</p>
+        </div>
+
+        <div class="tile step">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M20 7l-8 10L4 11" stroke="#2ECC71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Walk & Redeem</h3>
+          <p>Earn points daily and redeem rewards inside the app.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="section" id="benefits">
+      <h2 class="sectionTitle">Why People Use Walkly</h2>
+      <p class="sectionLead">Clean, simple, and built around one habit: walking.</p>
+
+      <div class="grid3">
+        <div class="tile">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 22s8-4.5 8-11V6l-8-4-8 4v5c0 6.5 8 11 8 11z" stroke="#2ECC71" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>100% Free to Start</h3>
+          <p>Download and begin earning points right away. Optional in-app features may vary.</p>
+        </div>
+
+        <div class="tile">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 7h10v10H7z" stroke="#2ECC71" stroke-width="2"/>
+              <path d="M4 12h3M17 12h3M12 4v3M12 17v3" stroke="#2ECC71" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Works in the Background</h3>
+          <p>Motion tracking is designed to be efficient on modern devices.</p>
+        </div>
+
+        <div class="tile">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 2a10 10 0 1010 10" stroke="#2ECC71" stroke-width="2"/>
+              <path d="M12 6v6l4 2" stroke="#2ECC71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Fast Setup</h3>
+          <p>Most people finish setup in under a minute and start earning the same day.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="section" id="trust">
+      <h2 class="sectionTitle">Trust & Transparency</h2>
+      <p class="sectionLead">
+        This page helps users discover third-party fitness reward apps. We keep it simple and clear.
+      </p>
+
+      <div class="grid3">
+        <div class="tile">
+          <h3>Clear Destination</h3>
+          <p>You’ll be redirected to an official app store link to install.</p>
+        </div>
+        <div class="tile">
+          <h3>One Action Only</h3>
+          <p>No confusing menus. Just download, install, and walk.</p>
+        </div>
+        <div class="tile">
+          <h3>Disclosure</h3>
+          <p>We may earn a referral fee if you install. This does not increase your cost.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <h2 class="sectionTitle">FAQ</h2>
+      <div class="faq">
+        <details>
+          <summary>Is this free?</summary>
+          <p>Yes, the app is free to download. Optional in-app features or offers may vary by region.</p>
+        </details>
+        <details>
+          <summary>Do I earn real money?</summary>
+          <p>You earn in-app points or rewards that can be redeemed inside the app (availability may vary).</p>
+        </details>
+        <details>
+          <summary>Will this drain my battery?</summary>
+          <p>Modern step tracking uses motion sensors efficiently. Results can vary by device and settings.</p>
+        </details>
+        <details>
+          <summary>How do I start?</summary>
+          <p>Tap “Download & Start Earning,” install, allow motion permissions, and start walking.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section">
+      <div class="final">
+        <h2>Ready to Start Earning?</h2>
+        <p>Tap below to download and begin earning from your daily steps today.</p>
+        <a class="btn btnPrimary" id="btnBottom">Download & Start Earning</a>
+        <div class="micro">Free download • No credit card • Start in under 60 seconds</div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footRow">
+        <div>© <span id="year"></span> Walkly.us</div>
+        <div class="links">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms</a>
+        </div>
+      </div>
+
+      <div style="margin-top:10px">
+        Disclosure: This page may contain affiliate/referral links. We may receive compensation if you install an app through our link. Reward availability depends on the app, your activity, device settings, and region.
+      </div>
+    </footer>
+  </main>
+
+  <!-- Sticky CTA (Mobile) -->
+  <div class="sticky" role="dialog" aria-label="Download prompt">
+    <div class="stickyInner">
+      <div class="stickyTxt">
+        Turn steps into rewards
+        <span>Tap to download & start earning</span>
+      </div>
+      <a class="btn btnPrimary" id="btnSticky" style="--px:16px;--py:12px">Download</a>
+    </div>
+  </div>
+
+  <script>
+    // ✅ Put your CPI redirect link here:
+    const LINK = "https://swcapp.com/i/walkifyy";
+
+    // Buttons that trigger the redirect
+    const buttonIds = ["btnTop","btnPrimary","btnBottom","btnSticky","btnMock"];
+    const buttons = buttonIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    function go() {
+      // Optional: track click event here (GA/Pixel) before redirect if you want
+      window.location.href = LINK;
+    }
+
+    buttons.forEach(btn => btn.addEventListener("click", go));
+
+    // Year
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
